@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>訪客登錄</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+  
+    <!-- 歡迎文字 -->
+  <div class="text-center p-4 text-lg font-bold text-gray-800">
+    Hi，陳緯杰，歡迎使用預借系統
+  </div>
+
+  <!-- Tabs -->
+  <div class="flex border-b">
+    <button class="flex-1 p-3 text-white bg-blue-500">訪客登錄</button>
+    <button class="flex-1 p-3 text-gray-600 bg-gray-300">會議室借用</button>
+    <button class="flex-1 p-3 text-gray-600 bg-gray-300">設備借用</button>
+  </div>
+
+  <!-- 表單內容 -->
+  <div class="p-4">
+    <table class="w-full border border-gray-400 text-sm">
+      <tr class="border">
+        <td class="p-2 border w-32">到訪時間</td>
+        <td class="p-2">
+          <input type="datetime-local" value="2025-09-30T10:00" class="border p-1 w-full mb-1">
+          <div>
+            <label class="block"><input type="checkbox" checked> 台南廠
+          <label class="ml-4"><input type="checkbox"> 觀音廠</label>
+          </div>
+        </td>
+      </tr>
+      <tr class="border">
+        <td class="p-2 border">訪客姓名</td>
+        <td class="p-2"><input type="text" value="陳緯杰" class="border p-1 w-full"></td>
+      </tr>
+      <tr class="border">
+        <td class="p-2 border">公司名稱</td>
+        <td class="p-2"><input type="text" value="東陽實業廠股份有限公司" class="border p-1 w-full"></td>
+      </tr>
+      <tr class="border">
+        <td class="p-2 border">到廠人數</td>
+        <td class="p-2 flex items-center">
+          <input type="number" value="20" maxlength="2" class="border p-1 w-12 text-center"> <span class="ml-1">人</span>
+        </td>
+      </tr>
+      <tr class="border">
+        <td class="p-2 border">到廠車型</td>
+        <td class="p-2">
+          <label><input type="checkbox"> 小客車</label>
+          <label class="ml-4"><input type="checkbox"> 小巴士</label>
+          <label class="ml-4"><input type="checkbox"> 遊覽車</label>
+        </td>
+      </tr>
+      <tr class="border">
+        <td class="p-2 border">工廠參觀</td>
+        <td class="p-2">
+          <label><input type="radio" name="tour"> 是</label>
+          <label class="ml-4"><input type="radio" name="tour"> 否</label>
+        </td>
+      </tr>
+      <tr class="border">
+        <td class="p-2 border">用餐需求</td>
+        <td class="p-2">
+          <label><input type="radio" name="meal"> 是</label>
+          <label class="ml-4"><input type="radio" name="meal"> 否</label>
+        </td>
+      </tr>
+      <tr class="border">
+        <td class="p-2 border">抵達通知</td>
+        <td class="p-2">
+          <div class="flex">
+            <input type="text" value="16796, 24331" class="border p-1 flex-1">
+          </div>
+        </td>
+      </tr>
+      <tr class="border">
+        <td class="p-2 border">會議需求</td>
+        <td class="p-2">
+          <label><input type="radio" name="meeting" checked> 是</label>
+          <label class="ml-4"><input type="radio" name="meeting"> 否</label>
+        </td>
+      </tr>
+    </table>
+
+    <!-- 儲存送出按鈕 -->
+    <button class="w-full mt-4 bg-blue-500 text-white py-2 rounded">儲存送出</button>
+  </div>
+
+</body>
+</html>
