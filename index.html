@@ -207,25 +207,44 @@
     <button class="w-full mt-4 bg-blue-500 text-white py-2 rounded">儲存送出</button>
   </div>
 
-  <!-- JS 切換 -->
-  <script>
-    const tabs = document.querySelectorAll(".tab-btn");
-    const contents = document.querySelectorAll(".tab-content");
+<!-- JS 切換 -->
+<script>
+  const tabs = document.querySelectorAll(".tab-btn");
+  const contents = document.querySelectorAll(".tab-content");
 
-    tabs.forEach(tab => {
-      tab.addEventListener("click", () => {
-        tabs.forEach(t => {
-          t.classList.remove("bg-blue-500","text-white");
-          t.classList.add("bg-gray-300","text-gray-600");
-        });
-        contents.forEach(c => c.classList.remove("active"));
-
-        tab.classList.add("bg-blue-500","text-white");
-        tab.classList.remove("bg-gray-300","text-gray-600");
-        document.getElementById(tab.dataset.tab).classList.add("active");
-      });
+  // 頁籤切換
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      switchTab(tab.dataset.tab);
     });
-  </script>
+  });
+
+  function switchTab(tabId) {
+    tabs.forEach(t => {
+      t.classList.remove("bg-blue-500","text-white");
+      t.classList.add("bg-gray-300","text-gray-600");
+    });
+    contents.forEach(c => c.classList.remove("active"));
+
+    document.querySelector(`.tab-btn[data-tab='${tabId}']`)
+      .classList.add("bg-blue-500","text-white");
+    document.querySelector(`.tab-btn[data-tab='${tabId}']`)
+      .classList.remove("bg-gray-300","text-gray-600");
+    document.getElementById(tabId).classList.add("active");
+  }
+
+  // 監聽送出按鈕
+  document.querySelector("#visitor-submit")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    switchTab("meeting"); // 訪客登錄 → 會議室借用
+  });
+
+  document.querySelector("#meeting-submit")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    switchTab("visitor"); // 會議室借用 → 訪客登錄
+  });
+</script>
 
 </body>
 </html>
+
