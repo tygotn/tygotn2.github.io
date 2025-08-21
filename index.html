@@ -80,15 +80,17 @@
         </td>
       </tr>
       <tr class="border">
-        <td class="p-2 border bg-gray-200">會議需求</td>
-        <td class="p-2">
-          <label><input type="radio" name="meeting" checked> 是</label>
-          <label class="ml-1"><input type="radio" name="meeting"> 否</label>
-        </td>
-      </tr>
-    </table>
-    <button class="w-full mt-4 bg-blue-500 text-white py-2 rounded">儲存送出</button>
-  </div>
+      <td class="p-2 border bg-gray-200">會議需求</td>
+      <td class="p-2">
+        <label><input type="radio" name="meeting" value="yes" checked> 是</label>
+        <label class="ml-1"><input type="radio" name="meeting" value="no"> 否</label>
+      </td>
+    </tr>
+  </table>
+  <button id="visitor-submit" class="w-full mt-4 bg-blue-500 text-white py-2 rounded">
+    儲存送出
+  </button>
+</div>
 
   <!-- 會議室借用 -->
   <div id="meeting" class="tab-content p-4">
@@ -133,15 +135,17 @@
   </td>
 </tr>
       <tr class="border">
-        <td class="p-2 border bg-gray-200">訪客登錄</td>
-        <td class="p-2">
-          <label><input type="radio" name="visitor_reg" checked> 是</label>
-          <label class="ml-1"><input type="radio" name="visitor_reg"> 否</label>
-        </td>
-      </tr>
-    </table>
-    <button class="w-full mt-4 bg-blue-500 text-white py-2 rounded">儲存送出</button>
-  </div>
+      <td class="p-2 border bg-gray-200">訪客登錄</td>
+      <td class="p-2">
+        <label><input type="radio" name="visitor_reg" value="yes" checked> 是</label>
+        <label class="ml-1"><input type="radio" name="visitor_reg" value="no"> 否</label>
+      </td>
+    </tr>
+  </table>
+  <button id="meeting-submit" class="w-full mt-4 bg-blue-500 text-white py-2 rounded">
+    儲存送出
+  </button>
+</div>
 
   <!-- 設備借用 -->
   <div id="equipment" class="tab-content p-4">
@@ -204,8 +208,10 @@
   </td>
 </tr>
     </table>
-    <button class="w-full mt-4 bg-blue-500 text-white py-2 rounded">儲存送出</button>
-  </div>
+    <button id="equipment-submit" class="w-full mt-4 bg-blue-500 text-white py-2 rounded">
+    儲存送出
+  </button>
+</div>
 
 <!-- JS 切換 -->
 <script>
@@ -233,20 +239,30 @@
     document.getElementById(tabId).classList.add("active");
   }
 
-  // 監聽送出按鈕
-  document.querySelector("#visitor-submit")?.addEventListener("click", (e) => {
+  // 訪客登錄 → 會議室借用（只有當會議需求=是）
+  document.getElementById("visitor-submit").addEventListener("click", (e) => {
     e.preventDefault();
-    switchTab("meeting"); // 訪客登錄 → 會議室借用
+    const meetingNeed = document.querySelector("input[name='meeting']:checked")?.value;
+    if (meetingNeed === "yes") {
+      switchTab("meeting");
+    }
   });
 
-  document.querySelector("#meeting-submit")?.addEventListener("click", (e) => {
+  // 會議室借用 → 訪客登錄（只有當訪客登錄=是）
+  document.getElementById("meeting-submit").addEventListener("click", (e) => {
     e.preventDefault();
-    switchTab("visitor"); // 會議室借用 → 訪客登錄
+    const visitorReg = document.querySelector("input[name='visitor_reg']:checked")?.value;
+    if (visitorReg === "yes") {
+      switchTab("visitor");
+    }
+  });
+
+  // 設備借用不跳頁籤（按鈕保留）
+  document.getElementById("equipment-submit").addEventListener("click", (e) => {
+    e.preventDefault();
+    alert("設備借用資料已送出！"); // 你可以改成送 API 或其他動作
   });
 </script>
 
 </body>
 </html>
-
-
-
